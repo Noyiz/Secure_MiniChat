@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>即时通信管理系统</title>
+</head>
+<body>
+<div align="center">
+    <h1>Instant messaging management system<font size="2">©zs</font></h1>
+    <p></p>
+    <form action="find" method="post">
+         {% csrf_token %}
+        <input type="text" name="str" placeholder="input the username or email"><input type="submit" value="search">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<a
+                href="add.html">add user</a>
+    </form>
+    <p></p>
+    <table border="1">
+        <thead>
+        <th>username</th>
+        <th>email</th>
+        <th>password</th>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.password }}</td>
+                <td><a href="update?update_username={{ user.username }}">update</a>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div style="margin-right:15px">共{{ count }}条记录</div>
+</div>
+
+</body>
+</html>
